@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
+import Navbar from '../components/Navbar';
+import Loading from '../components/Loading';
 import barcaImage from '../assets/barca.jpg';
 import chelseaImage from '../assets/chelsea.jpg';
 import madridImage from '../assets/madrid.jpg';
 import chelseaImage2 from '../assets/chelsea2.jpg';
 
 const Home = () => {
+  const [initialLoading, setInitialLoading] = useState(true);
 
   const jerseyImages = [
     { src: barcaImage, alt: 'Barcelona Jersey' },
@@ -14,22 +17,22 @@ const Home = () => {
     { src: chelseaImage2, alt: 'Chelsea Jersey 2' },
   ];
 
+  useEffect(() => {
+    // Only show loading on initial page load
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []); // Empty dependency array means this runs once on mount
+
+  if (initialLoading && window.location.pathname === '/') {
+    return <Loading />;
+  }
+
   return (
     <div>
-      <header className="header">
-        <div className="container nav-container">
-          <div className="logo">BULUBA_SPORTWEARS</div>
-          <nav className="nav-links">
-            <a href="/" className="nav-link">Home</a>
-            <a href="productDetai" className="nav-link">Products</a>
-            <a href="#" className="nav-link">Men</a>
-            <a href="#" className="nav-link">Women</a>
-            <a href="#" className="nav-link">Kids</a>
-            <a href="#" className="nav-link">Sale</a>
-            <a href="#" className="nav-link">Contact</a>
-          </nav>
-        </div>
-      </header>
+          <Navbar/>
 
       <section className="hero">
         <div className="container">
@@ -42,7 +45,6 @@ const Home = () => {
                   <img src={image.src} alt={image.alt} />
                 </div>
               ))}
-              {/* Duplicate images for infinite scroll effect */}
               {jerseyImages.map((image, index) => (
                 <div key={`duplicate-${index}`} className="carousel-slide">
                   <img src={image.src} alt={image.alt} />
@@ -58,34 +60,30 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">Featured Collections</h2>
           <div className="product-grid">
-            <div className="product-card">
-              <img src="https://via.placeholder.com/400x300" alt="Men" className="product-image" />
-              <div className="product-content">
-                <h3 className="product-title">Men</h3>
-                <p className="product-description">Explore the best in men's activewear.</p>
+            {['Men', 'Women', 'Kids'].map((category) => (
+              <div key={category} className="product-card">
+                <img 
+                  src="https://via.placeholder.com/400x300" 
+                  alt={category} 
+                  className="product-image" 
+                />
+                <div className="product-content">
+                  <h3 className="product-title">{category}</h3>
+                  <p className="product-description">
+                    {category === 'Men' && 'Explore the best in men\'s activewear.'}
+                    {category === 'Women' && 'Trendy and comfortable sportswear for women.'}
+                    {category === 'Kids' && 'Durable and stylish outfits for kids.'}
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="product-card">
-              <img src="https://via.placeholder.com/400x300" alt="Women" className="product-image" />
-              <div className="product-content">
-                <h3 className="product-title">Women</h3>
-                <p className="product-description">Trendy and comfortable sportswear for women.</p>
-              </div>
-            </div>
-            <div className="product-card">
-              <img src="https://via.placeholder.com/400x300" alt="Kids" className="product-image" />
-              <div className="product-content">
-                <h3 className="product-title">Kids</h3>
-                <p className="product-description">Durable and stylish outfits for kids.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
       <footer className="footer">
         <div className="container">
-          &copy; 2025 SNB_SPORTWEARS. All rights reserved.
+          &copy; 2025 BULUBA_SPORTWEARS. All rights reserved.
         </div>
       </footer>
     </div>

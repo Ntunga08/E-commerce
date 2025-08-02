@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className="loading-screen">
       <div className="spinner"></div>
-      <p>Welcome to BULUBA_SPORTWEARS...</p>
+      <h2>Welcome to BULUBA_SPORTWEARS</h2>
     </div>
   );
 };
