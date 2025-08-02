@@ -6,7 +6,7 @@ import madridImage from '../assets/madrid.jpg';
 import chelseaImage2 from '../assets/chelsea2.jpg';
 
 const Home = () => {
-  // Array of all jersey images
+
   const jerseyImages = [
     { src: barcaImage, alt: 'Barcelona Jersey' },
     { src: chelseaImage, alt: 'Chelsea Jersey' },
@@ -18,10 +18,10 @@ const Home = () => {
     <div>
       <header className="header">
         <div className="container nav-container">
-          <div className="logo">SNB_SPORTWEARS</div>
+          <div className="logo">BULUBA_SPORTWEARS</div>
           <nav className="nav-links">
-            <a href="#" className="nav-link">Home</a>
-            <a href="#" className="nav-link">Products</a>
+            <a href="/" className="nav-link">Home</a>
+            <a href="productDetai" className="nav-link">Products</a>
             <a href="#" className="nav-link">Men</a>
             <a href="#" className="nav-link">Women</a>
             <a href="#" className="nav-link">Kids</a>
