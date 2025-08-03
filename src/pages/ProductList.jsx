@@ -467,3 +467,28 @@ const SportsJerseyPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold mb-2 flex items-center justify-center">
+              <Trophy className="w-6 h-6 mr-2 text-yellow-500" />
+              Sports Jersey Store
+            </h3>
+            <p className="text-gray-400">Your destination for authentic team jerseys</p>
+            <div className="mt-6 flex justify-center space-x-6">
+              <span className="text-sm text-gray-400">Free shipping on orders over Tsh 100,000</span>
+              <span className="text-sm text-gray-400">•</span>
+              <span className="text-sm text-gray-400">30-day returns</span>
+              <span className="text-sm text-gray-400">•</span>
+              <span className="text-sm text-gray-400">Official licensed products</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default SportsJerseyPage;
