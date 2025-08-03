@@ -381,4 +381,33 @@ const SportsJerseyPage = () => {
     </div>
   );
 
- 
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-2 flex items-center">
+                <Shirt className="w-8 h-8 mr-3 text-orange-600" />
+                Sports Jersey Collection
+              </h1>
+              <p className="text-gray-600">Official team jerseys from top leagues worldwide</p>
+            </div>
+            <div className="flex items-center space-x-6">
+              <div className="text-center">
+                <Users className="w-6 h-6 text-orange-600 mx-auto mb-1" />
+                <p className="text-sm text-gray-500">Authentic</p>
+                <p className="font-semibold text-gray-900">Licensed</p>
+              </div>
+              <div className="text-center">
+                <Trophy className="w-6 h-6 text-yellow-500 mx-auto mb-1" />
+                <p className="text-sm text-gray-500">Showing</p>
+                <p className="font-semibold text-gray-900">{filteredProducts.length} Jerseys</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     
