@@ -189,3 +189,103 @@ const SportsJerseyPage = () => {
       category: "NBA"
     }
   ];
+
+  const categories = ['All', 'Premier League', 'La Liga', 'NBA', 'Serie A', 'Ligue 1'];
+  const filteredProducts = activeFilter === 'All' ? products : products.filter(p => p.category === activeFilter);
+
+  const toggleFavorite = (productId) => {
+    const newFavorites = new Set(favorites);
+    if (newFavorites.has(productId)) {
+      newFavorites.delete(productId);
+    } else {
+      newFavorites.add(productId);
+    }
+    setFavorites(newFavorites);
+  };
+
+  const handleSizeSelect = (productId, size) => {
+    setSelectedSize(prev => ({
+      ...prev,
+      [productId]: size
+    }));
+  };
+
+  const formatPrice = (price) => {
+    return `Tsh ${price.toLocaleString()}`;
+  };
+
+  const getSportIcon = (sport) => {
+    return sport === 'Basketball' ? <Trophy className="w-4 h-4" /> : <Shirt className="w-4 h-4" />;
+  };
+
+  const ProductCard = ({ product }) => (
+    <div 
+      className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 group relative"
+      onMouseEnter={() => setHoveredProduct(product.id)}
+      onMouseLeave={() => setHoveredProduct(null)}
+    >
+      {/* Discount Badge */}
+      {product.discount > 0 && (
+        <div className="absolute top-3 left-3 z-10">
+          <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+            {product.discount}% OFF
+          </span>
+        </div>
+      )}
+
+      {/* Sport Badge */}
+      <div className="absolute top-3 right-12 z-10">
+        <div className="bg-orange-500 text-white p-2 rounded-full shadow-lg">
+          {getSportIcon(product.sport)}
+        </div>
+      </div>
+
+      {/* Favorite Button */}
+      <button
+        onClick={() => toggleFavorite(product.id)}
+        className="absolute top-16 right-3 z-10 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-all duration-200 group/heart"
+      >
+        <Heart
+          className={`w-5 h-5 transition-colors duration-200 ${
+            favorites.has(product.id)
+              ? 'fill-red-500 text-red-500'
+              : 'text-gray-600 group-hover/heart:text-red-500'
+          }`}
+        />
+      </div>
+
+      {/* Jersey Display */}
+      <div className="relative h-52 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
+        <div className="relative">
+          {/* Jersey Shape */}
+          <div className="w-36 h-44 bg-gradient-to-b from-emerald-600 to-emerald-800 rounded-t-3xl relative transform group-hover:scale-110 transition-transform duration-300 shadow-xl">
+            {/* Jersey Details */}
+            <div className="absolute inset-2 bg-gradient-to-b from-white/20 to-transparent rounded-t-2xl"></div>
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-6 bg-white/30 rounded-full"></div>
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white font-bold text-lg">
+              {product.team.split(' ').pop().substring(0, 3).toUpperCase()}
+            </div>
+            <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 text-white text-xs">
+              {product.season}
+            </div>
+          </div>
+          {/* Jersey Number */}
+          <div className="absolute top-6 right-2 bg-white text-emerald-800 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
+            10
+          </div>
+        </div>
+        
+        {/* Hover Overlay */}
+        {hoveredProduct === product.id && (
+          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+            <div className="flex space-x-2">
+              <button className="p-3 bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors">
+                <Eye className="w-5 h-5 text-gray-700" />
+              </button>
+              <button className="p-3 bg-blue-600 rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+                <ShoppingCart className="w-5 h-5 text-white" />
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
