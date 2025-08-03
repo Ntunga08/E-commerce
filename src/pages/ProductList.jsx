@@ -334,3 +334,51 @@ const SportsJerseyPage = () => {
             ))}
           </div>
         </div>
+
+        {/* Size Selection */}
+        <div className="mb-4">
+          <span className="text-xs text-gray-500 mb-2 block">Size:</span>
+          <div className="flex space-x-1">
+            {product.sizes.map((size) => (
+              <button
+                key={size}
+                onClick={() => handleSizeSelect(product.id, size)}
+                className={`px-2 py-1 text-xs border rounded transition-colors ${
+                  selectedSize[product.id] === size
+                    ? 'bg-orange-600 text-white border-orange-600'
+                    : 'bg-white text-gray-600 border-gray-300 hover:border-orange-300'
+                }`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Price */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-2">
+            {product.discount > 0 && (
+              <span className="text-sm text-gray-400 line-through">
+                {formatPrice(product.originalPrice)}
+              </span>
+            )}
+            <span className="text-lg font-bold text-green-600">
+              {formatPrice(product.salePrice)}
+            </span>
+          </div>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded-full">
+            {product.category}
+          </span>
+          <button className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-orange-700 hover:to-red-700 transition-all duration-200 transform hover:scale-105">
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+ 
