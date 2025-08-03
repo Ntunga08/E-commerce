@@ -410,4 +410,60 @@ const SportsJerseyPage = () => {
         </div>
       </div>
 
-     
+      {/* Filters */}
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex flex-wrap gap-3 mb-8">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              className={`px-6 py-3 rounded-full border transition-all text-sm font-medium ${
+                activeFilter === category
+                  ? 'bg-orange-600 text-white border-orange-600 shadow-lg'
+                  : 'bg-white text-gray-700 border-gray-200 hover:bg-orange-50 hover:border-orange-300'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Product Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        {/* Load More */}
+        <div className="text-center mt-12">
+          <button className="bg-gradient-to-r from-orange-600 to-red-600 text-white px-8 py-4 rounded-full font-medium hover:from-orange-700 hover:to-red-700 transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center mx-auto">
+            <Shirt className="w-5 h-5 mr-2" />
+            Load More Jerseys
+          </button>
+        </div>
+      </div>
+
+      {/* Stats Bar */}
+      <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            <div>
+              <div className="text-3xl font-bold mb-2">50+</div>
+              <div className="text-orange-100">Teams Available</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">5</div>
+              <div className="text-orange-100">Major Leagues</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">100%</div>
+              <div className="text-orange-100">Authentic</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">24/7</div>
+              <div className="text-orange-100">Customer Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
