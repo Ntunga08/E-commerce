@@ -289,3 +289,48 @@ const SportsJerseyPage = () => {
           </div>
         )}
       </div>
+
+      {/* Product Info */}
+      <div className="p-5">
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex text-yellow-400">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`w-3 h-3 ${
+                  i < Math.floor(product.rating) ? 'fill-current' : 'text-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-xs text-gray-500">({product.rating})</span>
+        </div>
+
+        <h3 className="font-bold text-gray-800 mb-1 line-clamp-1 group-hover:text-orange-600 transition-colors">
+          {product.team}
+        </h3>
+        <p className="text-sm text-gray-600 mb-3">{product.type} • {product.season}</p>
+
+        {/* Colors */}
+        <div className="flex items-center mb-3">
+          <span className="text-xs text-gray-500 mr-2">Colors:</span>
+          <div className="flex space-x-1">
+            {product.colors.map((color, index) => (
+              <div
+                key={index}
+                className={`w-4 h-4 rounded-full border-2 border-gray-200 ${
+                  color === 'Red' ? 'bg-red-500' :
+                  color === 'Blue' ? 'bg-blue-500' :
+                  color === 'Green' ? 'bg-green-500' :
+                  color === 'Purple' ? 'bg-purple-500' :
+                  color === 'Orange' ? 'bg-orange-500' :
+                  color === 'Pink' ? 'bg-pink-500' :
+                  color === 'Yellow' ? 'bg-yellow-500' :
+                  color === 'Gold' ? 'bg-yellow-400' :
+                  color === 'Black' ? 'bg-black' :
+                  'bg-white border-gray-400'
+                }`}
+              ></div>
+            ))}
+          </div>
+        </div>
