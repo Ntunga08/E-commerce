@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Home.css';
-import Navbar from '../components/Navbar';
 import Loading from '../components/Loading';
 import barcaImage from '../assets/barca.jpg';
 import chelseaImage from '../assets/chelsea.jpg';
@@ -8,7 +7,7 @@ import madridImage from '../assets/madrid.jpg';
 import chelseaImage2 from '../assets/chelsea2.jpg';
 
 const Home = () => {
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const jerseyImages = [
     { src: barcaImage, alt: 'Barcelona Jersey' },
@@ -18,21 +17,50 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    // Only show loading on initial page load
     const timer = setTimeout(() => {
-      setInitialLoading(false);
+      setIsLoading(false);
     }, 2000);
 
     return () => clearTimeout(timer);
-  }, []); // Empty dependency array means this runs once on mount
+  }, []);
 
-  if (initialLoading && window.location.pathname === '/') {
+  if (isLoading) {
     return <Loading />;
   }
 
   return (
     <div>
-          <Navbar/>
+      <header className="header">
+        <div className="container nav-container">
+          <div className="logo">BULUBA_SPORTWEARS</div>
+          <nav className="nav-links">
+            {[
+              { href: '/', text: 'Home' },
+              { href: '/products', text: 'Products' },
+              { href: '/men', text: 'Men' },
+              { href: '/women', text: 'Women' },
+              { href: '/kids', text: 'Kids' },
+              { href: '/sale', text: 'Sale' },
+              { href: '/contact', text: 'Contact' }
+            ].map((link) => (
+              <a
+                key={link.text}
+                href={link.href}
+                className="nav-link"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsLoading(true);
+                  setTimeout(() => {
+                    window.location.href = link.href;
+                  }, 1000);
+                }}
+              >
+                {link.text}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </header>
 
       <section className="hero">
         <div className="container">
