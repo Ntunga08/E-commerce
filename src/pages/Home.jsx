@@ -6,7 +6,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   // Hardcoded jersey list
-  const jerseys = new Array(12).fill({
+  const jerseys = new Array(100).fill({
     name: "Manchester United",
     price: "$147 for 2 nights · 5.0",
     image: barcaImage,
@@ -22,7 +22,9 @@ const Home = () => {
     <>
       <Navbar />
       <div className="p-6">
-        <h1 className="text-3xl font-bold mb-6">BULUBA_SPORTWEARS</h1>
+          <div className="bg-white rounded-3xl shadow-lg p-6 mt-0 mb-4 w">
+           <h1 className="text-xl font-bold text-center">BULUBA_SPORTWEARS</h1>
+          </div>
 
         {/* ✅ FIXED Search bar wrapper */}
         <div className="mb-6 flex items-center max-w-md mx-auto">
